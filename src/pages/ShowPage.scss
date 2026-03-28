@@ -1,0 +1,58 @@
+.show-detail {
+  padding: 20px;
+
+  .back-btn {
+    margin-bottom: 15px;
+  }
+
+  .show-container {
+    display: flex;
+    gap: 30px;
+  }
+
+  .image-box {
+    width:300px;
+
+    img {
+      width:100%;
+      border-radius: 10px;
+    }
+  }
+
+  .details {
+    flex: 1;
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .genres {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .link {
+      display: inline-block;
+      margin: 10px 0;
+      color: #38bdf8;
+    }
+
+    .summary {
+      margin-top: 15px;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .show-container {
+    flex-direction: column;
+  }
+}

@@ -14,11 +14,57 @@ export default function ShowPage() {
   if (!show) return <p>Loading...</p>;
 
   return (
-    <div className="container">
-      <button onClick={() => navigate(-1)}>← Back</button>
-      <h1>{show.name}</h1>
-      <img src={show.image?.original} width="300" />
-      <p dangerouslySetInnerHTML={{ __html: show.summary }} />
+  <div className="show-detail">
+
+    <button onClick={() => navigate(-1)} className="back-btn">
+      ← Back
+    </button>
+
+    <div className="show-container">
+
+      {/* IMAGE */}
+      <div className="image-box">
+        <img src={show.image?.original} alt={show.name} />
+      </div>
+
+      {/* DETAILS */}
+      <div className="details">
+        <h1>{show.name}</h1>
+
+        <p className="rating">
+          ⭐ {show.rating?.average || "N/A"}
+        </p>
+
+        <p className="genres">
+          🎭 {show.genres.join(", ")}
+        </p>
+
+        <p>📺 Status: {show.status}</p>
+        <p>🗓️ Premiered: {show.premiered}</p>
+        <p>⏱️ Runtime: {show.runtime} mins</p>
+        <p>🗣️ Language: {show.language}</p>
+
+        <p>
+          🏢 Network: {show.network?.name || "N/A"}
+        </p>
+
+        {show.officialSite && (
+          <a
+            href={show.officialSite}
+            target="_blank"
+            className="link"
+          >
+            🌐 Official Site
+          </a>
+        )}
+
+        <div
+          className="summary"
+          dangerouslySetInnerHTML={{ __html: show.summary }}
+        />
+      </div>
+
     </div>
-  );
+  </div>
+);
 }
