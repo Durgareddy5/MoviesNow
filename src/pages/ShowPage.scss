@@ -1,58 +1,177 @@
-.show-detail {
-  padding: 20px;
+$bg-netflix: #141414;
+$text-main: #ffffff;
+$text-muted: #bcbcbc;
+$green-match: #46d369;
 
-  .back-btn {
-    margin-bottom: 15px;
-  }
+.netflix-page {
+  background-color: $bg-netflix;
+  color: $text-main;
+  min-height: 100vh;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
 
-  .show-container {
-    display: flex;
-    gap: 30px;
-  }
+  .nav-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 4%;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
 
-  .image-box {
-    width:300px;
-
-    img {
-      width:100%;
-      border-radius: 10px;
+    .back-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      
+      &:hover { color: #b3b3b3; }
     }
   }
 
-  .details {
-    flex: 1;
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 70vh; // Takes up 70% of the screen height
+    min-height: 400px;
+    
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: top center; 
+      z-index: 0;
+      opacity: 0.7; // Darken the image slightly so white text is readable
     }
 
-    .rating {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .genres {
-      color: #38bdf8;
-      margin-bottom: 10px;
-    }
-
-    .link {
-      display: inline-block;
-      margin: 10px 0;
-      color: #38bdf8;
-    }
-
-    .summary {
-      margin-top: 15px;
-      line-height: 1.6;
+    .hero-vignette {
+      position: absolute;
+      bottom: -1px; 
+      left: 0;
+      width: 100%;
+      height: 100%;
+      // The classic Netflix fade to black
+      background: linear-gradient(to top, $bg-netflix 0%, transparent 40%, rgba(20,20,20,0.3) 100%);
+      z-index: 1;
     }
   }
-}
 
-/* Responsive */
-@media (max-width: 768px) {
-  .show-container {
-    flex-direction: column;
+  .content-container {
+    position: relative;
+    z-index: 2;
+    padding: 0 4%;
+    margin-top: -25vh; // Pulls the content up over the faded background
+    max-width: 900px;
+
+    .show-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      margin: 0 0 15px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      line-height: 1.1;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+
+      .match-score { color: $green-match; font-weight: bold; }
+      
+      .maturity-rating, .hd-badge {
+        border: 1px solid rgba(255,255,255,0.4);
+        padding: 1px 6px;
+        font-size: 0.85rem;
+        border-radius: 3px;
+        color: rgba(255,255,255,0.9);
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+
+      button, a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 28px;
+        border-radius: 4px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        gap: 10px;
+      }
+
+      .play-btn {
+        background-color: white;
+        color: black;
+        border: none;
+        
+        &:hover { background-color: rgba(255,255,255,0.7); }
+      }
+
+      .more-info-btn {
+        background-color: rgba(109, 109, 110, 0.7); // Netflix secondary button grey
+        color: white;
+        border: none;
+
+        &:hover { background-color: rgba(109, 109, 110, 0.4); }
+      }
+    }
+
+    .info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+      }
+
+      .left-col {
+        flex: 2;
+        
+        .synopsis {
+          font-size: 1.15rem;
+          line-height: 1.5;
+          color: $text-main;
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+          
+          p { margin-top: 0; }
+        }
+      }
+
+      .right-col {
+        flex: 1;
+        font-size: 0.95rem;
+        
+        .info-item {
+          margin-bottom: 12px;
+          line-height: 1.4;
+
+          .label { color: #777; }
+          .value { color: $text-main; }
+        }
+      }
+    }
   }
 }
