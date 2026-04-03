@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getShowById } from "../api/tvActions";
-import "./showpage.scss"; // Make sure to import the SCSS!
+import "./ShowPage.scss"; // Make sure to import the SCSS!
 
 export default function ShowPage() {
   const { id } = useParams();
